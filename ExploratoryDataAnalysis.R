@@ -155,3 +155,24 @@ ggplot(HousingData, aes(x = AGE)) +
   labs(title = "Distribution of AGE (Proportion of Units Built Prior to 1940)",
        x = "Age of Units",
        y = "Frequency")
+
+# Univariate plot for INDUS (proportion of non-retail business acres per town)
+ggplot(HousingData, aes(x = INDUS)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of INDUS (Non-Retail Business Acres)",
+       x = "Proportion of Non-Retail Business Acres",
+       y = "Frequency")
+
+# Univariate plot for TAX (full-value property tax rate per $10,000)
+ggplot(HousingData, aes(x = TAX)) +
+  geom_histogram(binwidth = 10, fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of TAX (Property Tax Rate)",
+       x = "Property Tax Rate",
+       y = "Frequency")
+
+# Univariate plot for LSTAT (% lower status of the population)
+ggplot(HousingData, aes(x = LSTAT)) +
+  geom_histogram(binwidth = 1, fill = "brown", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of LSTAT (Percentage of Lower Status)",
+       x = "Percentage of Lower Status",
+       y = "Frequency")
