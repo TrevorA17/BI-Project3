@@ -60,4 +60,28 @@ print(boot_results)
 # Plot the bootstrap distribution
 plot(boot_results, type = "basic", col = "blue", pch = 20)
 
+# Install and load the caret package if not already installed
+install.packages("caret")
+library(caret)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)  # 10-fold cross-validation
+
+# Basic k-fold cross-validation
+model_basic <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+print(model_basic)
+
+# Repeated k-fold cross-validation (5 repetitions)
+model_repeated <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "repeatedcv", number = 10, repeats = 5))
+print(model_repeated)
+
+# Leave-One-Out Cross-Validation (LOOCV)
+model_loocv <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "LOOCV"))
+print(model_loocv)
+
 
