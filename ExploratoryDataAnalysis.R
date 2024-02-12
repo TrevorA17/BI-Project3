@@ -108,3 +108,15 @@ cat(paste0("Range: ", paste(range_TAX, collapse = " - ")), "\n")
 cat(paste0("Variance: ", round(variance_TAX, 2)), "\n")
 cat(paste0("Standard Deviation: ", round(sd_TAX, 2)), "\n\n")
 
+# Calculate correlation between RM (number of rooms) and MEDV (Median Home Value)
+correlation_RM_MEDV <- cor(HousingData$RM, HousingData$MEDV, use = "complete.obs")
+
+cat("Measures of Relationship (Correlation) between RM and MEDV:\n")
+cat(paste0("Correlation Coefficient: ", round(correlation_RM_MEDV, 2)), "\n\n")
+
+# Calculate correlation between AGE (proportion of units built prior to 1940) and TAX (property tax rate)
+correlation_AGE_TAX <- cor(HousingData$AGE, HousingData$TAX, use = "complete.obs")
+
+cat("Measures of Relationship (Correlation) between AGE and TAX:\n")
+cat(paste0("Correlation Coefficient: ", round(correlation_AGE_TAX, 2)), "\n\n")
+
