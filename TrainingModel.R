@@ -84,4 +84,29 @@ print(model_repeated)
 model_loocv <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "LOOCV"))
 print(model_loocv)
 
+# Install and load the caret package if not already installed
+install.packages("caret")
+library(caret)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)
+
+# Train a linear regression model
+model <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+
+# Display the trained model
+print(model)
+
+# Make predictions on the training set (for illustration purposes)
+predictions <- predict(model, newdata = HousingData)
+
+# Evaluate the model (for illustration purposes)
+rmse <- sqrt(mean((predictions - HousingData$MEDV)^2))
+cat("Root Mean Squared Error (RMSE):", round(rmse, 2), "\n")
+
 
