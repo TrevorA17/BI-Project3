@@ -46,3 +46,23 @@ cat(paste0("Median: ", median_MEDV), "\n")
 cat(paste0("Mode: ", mode_MEDV), "\n\n")
 
 
+# Calculate mean, median, and mode for AGE (proportion of owner-occupied units built prior to 1940)
+mean_AGE <- mean(HousingData$AGE, na.rm = TRUE)
+median_AGE <- median(HousingData$AGE, na.rm = TRUE)
+mode_AGE <- as.numeric(names(table(HousingData$AGE))[which.max(table(HousingData$AGE))])
+
+cat("Measures of Central Tendency for AGE (Proportion of Units Built Prior to 1940):\n")
+cat(paste0("Mean: ", round(mean_AGE, 2)), "\n")
+cat(paste0("Median: ", median_AGE), "\n")
+cat(paste0("Mode: ", mode_AGE), "\n\n")
+
+# Calculate mean, median, and mode for TAX (full-value property tax rate per $10,000)
+mean_TAX <- mean(HousingData$TAX, na.rm = TRUE)
+median_TAX <- median(HousingData$TAX, na.rm = TRUE)
+mode_TAX <- as.numeric(names(table(HousingData$TAX))[which.max(table(HousingData$TAX))])
+
+cat("Measures of Central Tendency for TAX (Property Tax Rate):\n")
+cat(paste0("Mean: ", round(mean_TAX, 2)), "\n")
+cat(paste0("Median: ", median_TAX), "\n")
+cat(paste0("Mode: ", mode_TAX), "\n\n")
+
