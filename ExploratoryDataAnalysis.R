@@ -3,7 +3,7 @@ HousingData <- read.csv("data/boston.csv", colClasses = c(
   CRIM = "numeric",
   ZN = "numeric",
   INDUS = "numeric",
-  CHAS = "numeric",
+  CHAS = "factor",  # Corrected from "numeric" to "factor"
   NOX = "numeric",
   RM = "numeric",
   AGE = "numeric",
@@ -18,3 +18,12 @@ HousingData <- read.csv("data/boston.csv", colClasses = c(
 
 # Display the dataset
 View(HousingData)
+
+# Summary statistics for numeric variables
+summary(HousingData)
+
+# Frequency distribution for categorical variables
+table(HousingData$CHAS)  
+
+
+
