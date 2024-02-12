@@ -18,3 +18,15 @@ HousingData <- read.csv("data/boston.csv", colClasses = c(
 
 # Display the dataset
 View(HousingData)
+
+# Check for missing values in each column
+missing_values <- colSums(is.na(HousingData))
+
+# Print columns with missing values (if any)
+columns_with_missing <- names(missing_values[missing_values > 0])
+if (length(columns_with_missing) > 0) {
+  cat("Columns with missing values:\n")
+  print(columns_with_missing)
+} else {
+  cat("No missing values found in the dataset.\n")
+}
