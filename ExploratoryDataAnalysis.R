@@ -86,3 +86,25 @@ cat(paste0("Range: ", paste(range_MEDV, collapse = " - ")), "\n")
 cat(paste0("Variance: ", round(variance_MEDV, 2)), "\n")
 cat(paste0("Standard Deviation: ", round(sd_MEDV, 2)), "\n\n")
 
+# Calculate range, variance, and standard deviation for additional variables in the Boston Housing dataset
+
+# Calculate range, variance, and standard deviation for AGE (proportion of owner-occupied units built prior to 1940)
+range_AGE <- range(HousingData$AGE, na.rm = TRUE)
+variance_AGE <- var(HousingData$AGE, na.rm = TRUE)
+sd_AGE <- sd(HousingData$AGE, na.rm = TRUE)
+
+cat("Measures of Distribution for AGE (Proportion of Units Built Prior to 1940):\n")
+cat(paste0("Range: ", paste(range_AGE, collapse = " - ")), "\n")
+cat(paste0("Variance: ", round(variance_AGE, 2)), "\n")
+cat(paste0("Standard Deviation: ", round(sd_AGE, 2)), "\n\n")
+
+# Calculate range, variance, and standard deviation for TAX (full-value property tax rate per $10,000)
+range_TAX <- range(HousingData$TAX, na.rm = TRUE)
+variance_TAX <- var(HousingData$TAX, na.rm = TRUE)
+sd_TAX <- sd(HousingData$TAX, na.rm = TRUE)
+
+cat("Measures of Distribution for TAX (Property Tax Rate):\n")
+cat(paste0("Range: ", paste(range_TAX, collapse = " - ")), "\n")
+cat(paste0("Variance: ", round(variance_TAX, 2)), "\n")
+cat(paste0("Standard Deviation: ", round(sd_TAX, 2)), "\n\n")
+
