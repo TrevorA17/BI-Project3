@@ -97,16 +97,40 @@ set.seed(123)
 train_control <- trainControl(method = "cv", number = 10)
 
 # Train a linear regression model
-model <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+lr_model <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
 
 # Display the trained model
-print(model)
+print(lr_model)
 
 # Make predictions on the training set (for illustration purposes)
-predictions <- predict(model, newdata = HousingData)
+predictions <- predict(lr_model, newdata = HousingData)
 
 # Evaluate the model (for illustration purposes)
 rmse <- sqrt(mean((predictions - HousingData$MEDV)^2))
 cat("Root Mean Squared Error (RMSE):", round(rmse, 2), "\n")
+
+# Install and load the caret package if not already installed
+install.packages("caret")
+library(caret)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)
+
+# Train a linear regression model
+model_lm <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+
+# Train another regression model (e.g., Random Forest)
+model_rf_reg <- train(MEDV ~ ., data = HousingData, method = "rf", trControl = train_control)
+
+# Compare model performance using resamples
+results_regression <- resamples(list(Linear_Regression = model_lm, Random_Forest_Reg = model_rf_reg))
+
+# Summarize and compare model performance
+summary(results_regression)
 
 
