@@ -176,3 +176,25 @@ ggplot(HousingData, aes(x = LSTAT)) +
   labs(title = "Distribution of LSTAT (Percentage of Lower Status)",
        x = "Percentage of Lower Status",
        y = "Frequency")
+
+# Multivariate plot for RM (number of rooms) and MEDV (Median Home Value)
+ggplot(HousingData, aes(x = RM, y = MEDV)) +
+  geom_point(color = "blue", alpha = 0.7) +
+  labs(title = "Scatter Plot: RM vs MEDV",
+       x = "Number of Rooms",
+       y = "Median Home Value ($1000s)")
+
+# Multivariate plot for LSTAT (percentage of lower status) and MEDV (Median Home Value)
+ggplot(HousingData, aes(x = LSTAT, y = MEDV)) +
+  geom_point(color = "green", alpha = 0.7) +
+  labs(title = "Scatter Plot: LSTAT vs MEDV",
+       x = "Percentage of Lower Status",
+       y = "Median Home Value ($1000s)")
+
+# Multivariate plot for AGE (proportion of units built prior to 1940) and TAX (property tax rate)
+ggplot(HousingData, aes(x = AGE, y = TAX)) +
+  geom_point(color = "purple", alpha = 0.7) +
+  labs(title = "Scatter Plot: AGE vs TAX",
+       x = "Age of Units",
+       y = "Property Tax Rate")
+
