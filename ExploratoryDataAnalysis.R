@@ -120,3 +120,38 @@ correlation_AGE_TAX <- cor(HousingData$AGE, HousingData$TAX, use = "complete.obs
 cat("Measures of Relationship (Correlation) between AGE and TAX:\n")
 cat(paste0("Correlation Coefficient: ", round(correlation_AGE_TAX, 2)), "\n\n")
 
+# Assuming the dataset is already loaded as HousingData
+
+# Perform ANOVA for the "CHAS" variable against the "RM" variable (number of rooms)
+anova_result <- aov(RM ~ CHAS, data = HousingData)
+
+# Print the ANOVA table
+cat("ANOVA Results for RM (Number of Rooms) vs CHAS:\n")
+print(summary(anova_result))
+
+# Install and load ggplot2 if not already installed
+# install.packages("ggplot2")
+library(ggplot2)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Univariate plot for RM (number of rooms)
+ggplot(HousingData, aes(x = RM)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of RM (Number of Rooms)",
+       x = "Number of Rooms",
+       y = "Frequency")
+
+# Univariate plot for MEDV (Median Home Value)
+ggplot(HousingData, aes(x = MEDV)) +
+  geom_histogram(binwidth = 5, fill = "green", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of MEDV (Median Home Value)",
+       x = "Median Home Value ($1000s)",
+       y = "Frequency")
+
+# Univariate plot for AGE (proportion of owner-occupied units built prior to 1940)
+ggplot(HousingData, aes(x = AGE)) +
+  geom_histogram(binwidth = 5, fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of AGE (Proportion of Units Built Prior to 1940)",
+       x = "Age of Units",
+       y = "Frequency")
