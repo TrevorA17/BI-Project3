@@ -198,3 +198,24 @@ ggplot(HousingData, aes(x = AGE, y = TAX)) +
        x = "Age of Units",
        y = "Property Tax Rate")
 
+# Multivariate plot for NOX (nitric oxides concentration) and INDUS (proportion of non-retail business acres)
+ggplot(HousingData, aes(x = NOX, y = INDUS)) +
+  geom_point(color = "orange", alpha = 0.7) +
+  labs(title = "Scatter Plot: NOX vs INDUS",
+       x = "Nitric Oxides Concentration",
+       y = "Proportion of Non-Retail Business Acres")
+
+# Multivariate plot for RAD (index of accessibility to radial highways) and TAX (property tax rate)
+ggplot(HousingData, aes(x = RAD, y = TAX)) +
+  geom_point(color = "red", alpha = 0.7) +
+  labs(title = "Scatter Plot: RAD vs TAX",
+       x = "Index of Accessibility to Radial Highways",
+       y = "Property Tax Rate")
+
+# Multivariate plot for CRIM (per capita crime rate) and LSTAT (percentage of lower status)
+ggplot(HousingData, aes(x = CRIM, y = LSTAT)) +
+  geom_point(color = "purple", alpha = 0.7) +
+  labs(title = "Scatter Plot: CRIM vs LSTAT",
+       x = "Per Capita Crime Rate",
+       y = "Percentage of Lower Status")
+
