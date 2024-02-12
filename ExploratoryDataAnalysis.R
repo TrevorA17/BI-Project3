@@ -66,3 +66,23 @@ cat(paste0("Mean: ", round(mean_TAX, 2)), "\n")
 cat(paste0("Median: ", median_TAX), "\n")
 cat(paste0("Mode: ", mode_TAX), "\n\n")
 
+# Calculate range, variance, and standard deviation for RM (number of rooms)
+range_RM <- range(HousingData$RM, na.rm = TRUE)
+variance_RM <- var(HousingData$RM, na.rm = TRUE)
+sd_RM <- sd(HousingData$RM, na.rm = TRUE)
+
+cat("Measures of Distribution for RM (Number of Rooms):\n")
+cat(paste0("Range: ", paste(range_RM, collapse = " - ")), "\n")
+cat(paste0("Variance: ", round(variance_RM, 2)), "\n")
+cat(paste0("Standard Deviation: ", round(sd_RM, 2)), "\n\n")
+
+# Calculate range, variance, and standard deviation for MEDV (Median Home Value)
+range_MEDV <- range(HousingData$MEDV, na.rm = TRUE)
+variance_MEDV <- var(HousingData$MEDV, na.rm = TRUE)
+sd_MEDV <- sd(HousingData$MEDV, na.rm = TRUE)
+
+cat("Measures of Distribution for MEDV (Median Home Value):\n")
+cat(paste0("Range: ", paste(range_MEDV, collapse = " - ")), "\n")
+cat(paste0("Variance: ", round(variance_MEDV, 2)), "\n")
+cat(paste0("Standard Deviation: ", round(sd_MEDV, 2)), "\n\n")
+
