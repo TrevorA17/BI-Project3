@@ -398,3 +398,74 @@ print(summary(anova_result))
     ## Residuals   504 247.23  0.4905                 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+``` r
+library(ggplot2)
+
+
+# Assuming the dataset is already loaded as HousingData
+
+# Univariate plot for RM (number of rooms)
+ggplot(HousingData, aes(x = RM)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of RM (Number of Rooms)",
+       x = "Number of Rooms",
+       y = "Frequency")
+```
+
+![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-1.png)<!-- -->
+
+``` r
+# Univariate plot for MEDV (Median Home Value)
+ggplot(HousingData, aes(x = MEDV)) +
+  geom_histogram(binwidth = 5, fill = "green", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of MEDV (Median Home Value)",
+       x = "Median Home Value ($1000s)",
+       y = "Frequency")
+```
+
+![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-2.png)<!-- -->
+
+``` r
+# Univariate plot for AGE (proportion of owner-occupied units built prior to 1940)
+ggplot(HousingData, aes(x = AGE)) +
+  geom_histogram(binwidth = 5, fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of AGE (Proportion of Units Built Prior to 1940)",
+       x = "Age of Units",
+       y = "Frequency")
+```
+
+![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-3.png)<!-- -->
+
+``` r
+# Univariate plot for INDUS (proportion of non-retail business acres per town)
+ggplot(HousingData, aes(x = INDUS)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of INDUS (Non-Retail Business Acres)",
+       x = "Proportion of Non-Retail Business Acres",
+       y = "Frequency")
+```
+
+![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-4.png)<!-- -->
+
+``` r
+# Univariate plot for TAX (full-value property tax rate per $10,000)
+ggplot(HousingData, aes(x = TAX)) +
+  geom_histogram(binwidth = 10, fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of TAX (Property Tax Rate)",
+       x = "Property Tax Rate",
+       y = "Frequency")
+```
+
+![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-5.png)<!-- -->
+
+``` r
+# Univariate plot for LSTAT (% lower status of the population)
+ggplot(HousingData, aes(x = LSTAT)) +
+  geom_histogram(binwidth = 1, fill = "brown", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of LSTAT (Percentage of Lower Status)",
+       x = "Percentage of Lower Status",
+       y = "Frequency")
+```
+
+![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-6.png)<!-- -->
