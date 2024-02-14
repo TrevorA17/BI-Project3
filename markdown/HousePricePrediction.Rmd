@@ -338,4 +338,76 @@ cat("Training set dimensions:", dim(train_data), "\n")
 cat("Testing set dimensions:", dim(test_data), "\n")
 ```
 
+## Boostrapping
+```{r Boostrapping}
+library(boot)
+
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define a function to compute the statistic of interest (e.g., mean of MEDV)
+statistic_function <- function(data, indices) {
+  subset_data <- data[indices, ]
+  return(mean(subset_data$MEDV))
+}
+
+# Perform bootstrapping
+boot_results <- boot(data = HousingData, statistic = statistic_function, R = 1000)
+
+# Display bootstrap results
+cat("Bootstrap Statistics:\n")
+print(boot_results)
+
+# Plot the bootstrap distribution
+plot(boot_results, type = "basic", col = "blue", pch = 20)
+
+```
+
+## Cross-validation
+```{r Cross-validation}
+library(caret)
+
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)  # 10-fold cross-validation
+
+# Basic k-fold cross-validation
+model_basic <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+print(model_basic)
+
+# Repeated k-fold cross-validation (5 repetitions)
+model_repeated <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "repeatedcv", number = 10, repeats = 5))
+print(model_repeated)
+
+# Leave-One-Out Cross-Validation (LOOCV)
+model_loocv <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "LOOCV"))
+print(model_loocv)
+```
+
+## Model Training
+```{r  Model Training}
+library(caret)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)
+
+# Train a linear regression model
+lr_model <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+
+# Display the trained model
+print(lr_model)
+```
+
+
+
+
 

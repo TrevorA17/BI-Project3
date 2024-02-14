@@ -21,6 +21,9 @@ Trevor Okinda
   - [Check for Missing Values](#check-for-missing-values)
 - [Training the model](#training-the-model)
   - [Data Splitting](#data-splitting)
+  - [Boostrapping](#boostrapping)
+  - [Cross-validation](#cross-validation)
+  - [Model Training](#model-training)
 
 # Author Details
 
@@ -612,3 +615,167 @@ cat("Testing set dimensions:", dim(test_data), "\n")
 ```
 
     ## Testing set dimensions: 150 14
+
+## Boostrapping
+
+``` r
+library(boot)
+```
+
+    ## 
+    ## Attaching package: 'boot'
+
+    ## The following object is masked from 'package:lattice':
+    ## 
+    ##     melanoma
+
+``` r
+# Set seed for reproducibility
+set.seed(123)
+
+# Define a function to compute the statistic of interest (e.g., mean of MEDV)
+statistic_function <- function(data, indices) {
+  subset_data <- data[indices, ]
+  return(mean(subset_data$MEDV))
+}
+
+# Perform bootstrapping
+boot_results <- boot(data = HousingData, statistic = statistic_function, R = 1000)
+
+# Display bootstrap results
+cat("Bootstrap Statistics:\n")
+```
+
+    ## Bootstrap Statistics:
+
+``` r
+print(boot_results)
+```
+
+    ## 
+    ## ORDINARY NONPARAMETRIC BOOTSTRAP
+    ## 
+    ## 
+    ## Call:
+    ## boot(data = HousingData, statistic = statistic_function, R = 1000)
+    ## 
+    ## 
+    ## Bootstrap Statistics :
+    ##     original      bias    std. error
+    ## t1* 22.53281 -0.01607372   0.4045557
+
+``` r
+# Plot the bootstrap distribution
+plot(boot_results, type = "basic", col = "blue", pch = 20)
+```
+
+![](HousePricePrediction_files/figure-gfm/Boostrapping-1.png)<!-- -->
+
+## Cross-validation
+
+``` r
+library(caret)
+
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)  # 10-fold cross-validation
+
+# Basic k-fold cross-validation
+model_basic <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+print(model_basic)
+```
+
+    ## Linear Regression 
+    ## 
+    ## 506 samples
+    ##  13 predictor
+    ## 
+    ## No pre-processing
+    ## Resampling: Cross-Validated (10 fold) 
+    ## Summary of sample sizes: 455, 456, 456, 456, 456, 456, ... 
+    ## Resampling results:
+    ## 
+    ##   RMSE      Rsquared   MAE     
+    ##   4.829796  0.7227732  3.368084
+    ## 
+    ## Tuning parameter 'intercept' was held constant at a value of TRUE
+
+``` r
+# Repeated k-fold cross-validation (5 repetitions)
+model_repeated <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "repeatedcv", number = 10, repeats = 5))
+print(model_repeated)
+```
+
+    ## Linear Regression 
+    ## 
+    ## 506 samples
+    ##  13 predictor
+    ## 
+    ## No pre-processing
+    ## Resampling: Cross-Validated (10 fold, repeated 5 times) 
+    ## Summary of sample sizes: 455, 455, 456, 456, 455, 455, ... 
+    ## Resampling results:
+    ## 
+    ##   RMSE      Rsquared   MAE     
+    ##   4.769444  0.7351754  3.374411
+    ## 
+    ## Tuning parameter 'intercept' was held constant at a value of TRUE
+
+``` r
+# Leave-One-Out Cross-Validation (LOOCV)
+model_loocv <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = trainControl(method = "LOOCV"))
+print(model_loocv)
+```
+
+    ## Linear Regression 
+    ## 
+    ## 506 samples
+    ##  13 predictor
+    ## 
+    ## No pre-processing
+    ## Resampling: Leave-One-Out Cross-Validation 
+    ## Summary of sample sizes: 505, 505, 505, 505, 505, 505, ... 
+    ## Resampling results:
+    ## 
+    ##   RMSE      Rsquared   MAE     
+    ##   4.870908  0.7191505  3.382797
+    ## 
+    ## Tuning parameter 'intercept' was held constant at a value of TRUE
+
+## Model Training
+
+``` r
+library(caret)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)
+
+# Train a linear regression model
+lr_model <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+
+# Display the trained model
+print(lr_model)
+```
+
+    ## Linear Regression 
+    ## 
+    ## 506 samples
+    ##  13 predictor
+    ## 
+    ## No pre-processing
+    ## Resampling: Cross-Validated (10 fold) 
+    ## Summary of sample sizes: 455, 456, 456, 456, 456, 456, ... 
+    ## Resampling results:
+    ## 
+    ##   RMSE      Rsquared   MAE     
+    ##   4.829796  0.7227732  3.368084
+    ## 
+    ## Tuning parameter 'intercept' was held constant at a value of TRUE
