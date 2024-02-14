@@ -9,6 +9,16 @@ Trevor Okinda
   - [Loading the Dataset](#loading-the-dataset)
     - [Source:](#source)
     - [Reference:](#reference)
+  - [Measures of Frequency](#measures-of-frequency)
+  - [Measures of Central Tendency](#measures-of-central-tendency)
+  - [Measures of Distribution](#measures-of-distribution)
+  - [Measures of Relationship](#measures-of-relationship)
+  - [ANOVA](#anova)
+  - [Univariate Plots](#univariate-plots)
+  - [Multivariate Plots](#multivariate-plots)
+- [Preprocessing and Data
+  Transformation](#preprocessing-and-data-transformation)
+  - [Check for Missing Values](#check-for-missing-values)
 
 # Author Details
 
@@ -70,6 +80,8 @@ HousingData <- read.csv("boston.csv", colClasses = c(
 View(HousingData)
 ```
 
+## Measures of Frequency
+
 ``` r
 #Measures of frequency
 # Summary statistics for numeric variables
@@ -113,6 +125,8 @@ table(HousingData$CHAS)
     ## 
     ##   0   1 
     ## 471  35
+
+## Measures of Central Tendency
 
 ``` r
 #Measures of Central Tendency
@@ -230,6 +244,8 @@ cat(paste0("Mode: ", mode_TAX), "\n\n")
 ```
 
     ## Mode: 666
+
+## Measures of Distribution
 
 ``` r
 # Calculate range, variance, and standard deviation for RM (number of rooms)
@@ -349,6 +365,8 @@ cat(paste0("Standard Deviation: ", round(sd_TAX, 2)), "\n\n")
 
     ## Standard Deviation: 168.54
 
+## Measures of Relationship
+
 ``` r
 # Calculate correlation between RM (number of rooms) and MEDV (Median Home Value)
 correlation_RM_MEDV <- cor(HousingData$RM, HousingData$MEDV, use = "complete.obs")
@@ -379,6 +397,8 @@ cat(paste0("Correlation Coefficient: ", round(correlation_AGE_TAX, 2)), "\n\n")
 
     ## Correlation Coefficient: 0.51
 
+## ANOVA
+
 ``` r
 # Perform ANOVA for the "CHAS" variable against the "RM" variable (number of rooms)
 anova_result <- aov(RM ~ CHAS, data = HousingData)
@@ -398,6 +418,8 @@ print(summary(anova_result))
     ## Residuals   504 247.23  0.4905                 
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+## Univariate Plots
 
 ``` r
 library(ggplot2)
@@ -468,6 +490,8 @@ ggplot(HousingData, aes(x = LSTAT)) +
 
 ![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-6.png)<!-- -->
 
+## Multivariate Plots
+
 ``` r
 # Multivariate plot for RM (number of rooms) and MEDV (Median Home Value)
 ggplot(HousingData, aes(x = RM, y = MEDV)) +
@@ -533,3 +557,23 @@ ggplot(HousingData, aes(x = CRIM, y = LSTAT)) +
 ```
 
 ![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-6.png)<!-- -->
+
+# Preprocessing and Data Transformation
+
+## Check for Missing Values
+
+``` r
+# Check for missing values in each column
+missing_values <- colSums(is.na(HousingData))
+
+# Print columns with missing values (if any)
+columns_with_missing <- names(missing_values[missing_values > 0])
+if (length(columns_with_missing) > 0) {
+  cat("Columns with missing values:\n")
+  print(columns_with_missing)
+} else {
+  cat("No missing values found in the dataset.\n")
+}
+```
+
+    ## No missing values found in the dataset.

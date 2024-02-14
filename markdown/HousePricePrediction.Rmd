@@ -74,6 +74,8 @@ View(HousingData)
 
 ```
 
+## Measures of Frequency
+
 ```{r Measures of Frequency}
 #Measures of frequency
 # Summary statistics for numeric variables
@@ -83,6 +85,8 @@ summary(HousingData)
 table(HousingData$CHAS)  
 
 ```
+
+## Measures of Central Tendency
 
 ```{r Measures of Central Tendency}
 #Measures of Central Tendency
@@ -129,6 +133,8 @@ cat(paste0("Mode: ", mode_TAX), "\n\n")
 
 ```
 
+## Measures of Distribution
+
 ```{r Measures of Distribution}
 # Calculate range, variance, and standard deviation for RM (number of rooms)
 range_RM <- range(HousingData$RM, na.rm = TRUE)
@@ -173,6 +179,8 @@ cat(paste0("Variance: ", round(variance_TAX, 2)), "\n")
 cat(paste0("Standard Deviation: ", round(sd_TAX, 2)), "\n\n")
 ```
 
+## Measures of Relationship
+
 ```{r Measures of Relationship}
 # Calculate correlation between RM (number of rooms) and MEDV (Median Home Value)
 correlation_RM_MEDV <- cor(HousingData$RM, HousingData$MEDV, use = "complete.obs")
@@ -187,6 +195,8 @@ cat("Measures of Relationship (Correlation) between AGE and TAX:\n")
 cat(paste0("Correlation Coefficient: ", round(correlation_AGE_TAX, 2)), "\n\n")
 ```
 
+## ANOVA
+
 ```{r ANOVA}
 # Perform ANOVA for the "CHAS" variable against the "RM" variable (number of rooms)
 anova_result <- aov(RM ~ CHAS, data = HousingData)
@@ -195,6 +205,8 @@ anova_result <- aov(RM ~ CHAS, data = HousingData)
 cat("ANOVA Results for RM (Number of Rooms) vs CHAS:\n")
 print(summary(anova_result))
 ```
+
+## Univariate Plots
 
 ```{r Univariate Plots}
 library(ggplot2)
@@ -243,6 +255,8 @@ ggplot(HousingData, aes(x = LSTAT)) +
        y = "Frequency")
 ```
 
+## Multivariate Plots
+
 ```{r Multivariate Plots}
 # Multivariate plot for RM (number of rooms) and MEDV (Median Home Value)
 ggplot(HousingData, aes(x = RM, y = MEDV)) +
@@ -286,4 +300,22 @@ ggplot(HousingData, aes(x = CRIM, y = LSTAT)) +
        x = "Per Capita Crime Rate",
        y = "Percentage of Lower Status")
 ```
+
+# Preprocessing and Data Transformation
+## Check for Missing Values
+```{r Check for missing values}
+# Check for missing values in each column
+missing_values <- colSums(is.na(HousingData))
+
+# Print columns with missing values (if any)
+columns_with_missing <- names(missing_values[missing_values > 0])
+if (length(columns_with_missing) > 0) {
+  cat("Columns with missing values:\n")
+  print(columns_with_missing)
+} else {
+  cat("No missing values found in the dataset.\n")
+}
+
+```
+
 
