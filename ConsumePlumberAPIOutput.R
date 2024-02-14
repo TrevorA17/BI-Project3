@@ -11,7 +11,7 @@ library(httr)
 library(jsonlite)
 
 # We set this as a constant port 5022 running on localhost
-base_url <- "http://127.0.0.1:5022/rainfall"
+base_url <- "http://127.0.0.1:5022/predict_medv"
 
 # Create a named list called "params" with input parameters
 params <- list(
