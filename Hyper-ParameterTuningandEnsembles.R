@@ -15,3 +15,8 @@ model_bagging <- train(MEDV ~ ., data = HousingData, method = "rf", trControl = 
 
 # Display the bagged model
 print(model_bagging)
+
+
+
+
+
