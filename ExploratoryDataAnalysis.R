@@ -130,7 +130,7 @@ cat("ANOVA Results for RM (Number of Rooms) vs CHAS:\n")
 print(summary(anova_result))
 
 # Install and load ggplot2 if not already installed
-# install.packages("ggplot2")
+install.packages("ggplot2")
 library(ggplot2)
 
 # Assuming the dataset is already loaded as HousingData
