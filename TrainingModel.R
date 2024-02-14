@@ -64,7 +64,6 @@ plot(boot_results, type = "basic", col = "blue", pch = 20)
 install.packages("caret")
 library(caret)
 
-# Assuming the dataset is already loaded as HousingData
 
 # Set seed for reproducibility
 set.seed(123)
