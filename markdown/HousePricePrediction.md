@@ -401,8 +401,6 @@ print(summary(anova_result))
 
 ``` r
 library(ggplot2)
-
-
 # Assuming the dataset is already loaded as HousingData
 
 # Univariate plot for RM (number of rooms)
@@ -469,3 +467,69 @@ ggplot(HousingData, aes(x = LSTAT)) +
 ```
 
 ![](HousePricePrediction_files/figure-gfm/Univariate%20Plots-6.png)<!-- -->
+
+``` r
+# Multivariate plot for RM (number of rooms) and MEDV (Median Home Value)
+ggplot(HousingData, aes(x = RM, y = MEDV)) +
+  geom_point(color = "blue", alpha = 0.7) +
+  labs(title = "Scatter Plot: RM vs MEDV",
+       x = "Number of Rooms",
+       y = "Median Home Value ($1000s)")
+```
+
+![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-1.png)<!-- -->
+
+``` r
+# Multivariate plot for LSTAT (percentage of lower status) and MEDV (Median Home Value)
+ggplot(HousingData, aes(x = LSTAT, y = MEDV)) +
+  geom_point(color = "green", alpha = 0.7) +
+  labs(title = "Scatter Plot: LSTAT vs MEDV",
+       x = "Percentage of Lower Status",
+       y = "Median Home Value ($1000s)")
+```
+
+![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-2.png)<!-- -->
+
+``` r
+# Multivariate plot for AGE (proportion of units built prior to 1940) and TAX (property tax rate)
+ggplot(HousingData, aes(x = AGE, y = TAX)) +
+  geom_point(color = "purple", alpha = 0.7) +
+  labs(title = "Scatter Plot: AGE vs TAX",
+       x = "Age of Units",
+       y = "Property Tax Rate")
+```
+
+![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-3.png)<!-- -->
+
+``` r
+# Multivariate plot for NOX (nitric oxides concentration) and INDUS (proportion of non-retail business acres)
+ggplot(HousingData, aes(x = NOX, y = INDUS)) +
+  geom_point(color = "orange", alpha = 0.7) +
+  labs(title = "Scatter Plot: NOX vs INDUS",
+       x = "Nitric Oxides Concentration",
+       y = "Proportion of Non-Retail Business Acres")
+```
+
+![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-4.png)<!-- -->
+
+``` r
+# Multivariate plot for RAD (index of accessibility to radial highways) and TAX (property tax rate)
+ggplot(HousingData, aes(x = RAD, y = TAX)) +
+  geom_point(color = "red", alpha = 0.7) +
+  labs(title = "Scatter Plot: RAD vs TAX",
+       x = "Index of Accessibility to Radial Highways",
+       y = "Property Tax Rate")
+```
+
+![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-5.png)<!-- -->
+
+``` r
+# Multivariate plot for CRIM (per capita crime rate) and LSTAT (percentage of lower status)
+ggplot(HousingData, aes(x = CRIM, y = LSTAT)) +
+  geom_point(color = "purple", alpha = 0.7) +
+  labs(title = "Scatter Plot: CRIM vs LSTAT",
+       x = "Per Capita Crime Rate",
+       y = "Percentage of Lower Status")
+```
+
+![](HousePricePrediction_files/figure-gfm/Multivariate%20Plots-6.png)<!-- -->
