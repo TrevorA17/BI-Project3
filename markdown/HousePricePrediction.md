@@ -59,9 +59,10 @@ class="uri">https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-da
 
 ### Reference:
 
-*\<Avagyan, Z. (2017). Weather CSV \[Data set\]. Kaggle.
-<a href="https://www.kaggle.com/datasets/zaraavagyan/weathercsv\"
-class="uri">https://www.kaggle.com/datasets/zaraavagyan/weathercsv\</a>\>  
+*\<StatLib - Carnegie Mellon University. (n.d.). Boston House
+Prices-Advanced Regression Techniques. Kaggle. <a
+href="https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data\"
+class="uri">https://www.kaggle.com/datasets/fedesoriano/the-boston-houseprice-data\</a>\>  
 Refer to the APA 7th edition manual for rules on how to cite datasets:
 <https://apastyle.apa.org/style-grammar-guidelines/references/examples/data-set-references>*
 
