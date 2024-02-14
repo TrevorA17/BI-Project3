@@ -24,6 +24,7 @@ Trevor Okinda
   - [Boostrapping](#boostrapping)
   - [Cross-validation](#cross-validation)
   - [Model Training](#model-training)
+  - [Model Performance Comparison](#model-performance-comparison)
 
 # Author Details
 
@@ -779,3 +780,65 @@ print(lr_model)
     ##   4.829796  0.7227732  3.368084
     ## 
     ## Tuning parameter 'intercept' was held constant at a value of TRUE
+
+``` r
+# Make predictions on the training set (for illustration purposes)
+predictions <- predict(lr_model, newdata = HousingData)
+
+# Evaluate the model (for illustration purposes)
+rmse <- sqrt(mean((predictions - HousingData$MEDV)^2))
+cat("Root Mean Squared Error (RMSE):", round(rmse, 2), "\n")
+```
+
+    ## Root Mean Squared Error (RMSE): 4.68
+
+## Model Performance Comparison
+
+``` r
+library(caret)
+
+# Assuming the dataset is already loaded as HousingData
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Define the training control for cross-validation
+train_control <- trainControl(method = "cv", number = 10)
+
+# Train a linear regression model
+model_lm <- train(MEDV ~ ., data = HousingData, method = "lm", trControl = train_control)
+
+# Train another regression model (e.g., Random Forest)
+model_rf_reg <- train(MEDV ~ ., data = HousingData, method = "rf", trControl = train_control)
+
+# Compare model performance using resamples
+results_regression <- resamples(list(Linear_Regression = model_lm, Random_Forest_Reg = model_rf_reg))
+
+# Summarize and compare model performance
+summary(results_regression)
+```
+
+    ## 
+    ## Call:
+    ## summary.resamples(object = results_regression)
+    ## 
+    ## Models: Linear_Regression, Random_Forest_Reg 
+    ## Number of resamples: 10 
+    ## 
+    ## MAE 
+    ##                       Min.  1st Qu.   Median     Mean  3rd Qu.     Max. NA's
+    ## Linear_Regression 2.893544 3.238243 3.433114 3.368084 3.479297 3.768270    0
+    ## Random_Forest_Reg 1.778113 2.000599 2.182164 2.141327 2.295409 2.465102    0
+    ## 
+    ## RMSE 
+    ##                       Min.  1st Qu.   Median     Mean  3rd Qu.     Max. NA's
+    ## Linear_Regression 4.010979 4.212700 4.640371 4.829796 5.472632 5.739607    0
+    ## Random_Forest_Reg 2.534777 2.842571 3.065730 3.154788 3.425043 4.174684    0
+    ## 
+    ## Rsquared 
+    ##                        Min.   1st Qu.    Median      Mean   3rd Qu.      Max.
+    ## Linear_Regression 0.5474682 0.6981784 0.7490814 0.7227732 0.7641744 0.8379462
+    ## Random_Forest_Reg 0.8309669 0.8701972 0.8947484 0.8848061 0.9016786 0.9373067
+    ##                   NA's
+    ## Linear_Regression    0
+    ## Random_Forest_Reg    0
