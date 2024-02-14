@@ -19,6 +19,8 @@ Trevor Okinda
 - [Preprocessing and Data
   Transformation](#preprocessing-and-data-transformation)
   - [Check for Missing Values](#check-for-missing-values)
+- [Training the model](#training-the-model)
+  - [Data Splitting](#data-splitting)
 
 # Author Details
 
@@ -577,3 +579,36 @@ if (length(columns_with_missing) > 0) {
 ```
 
     ## No missing values found in the dataset.
+
+# Training the model
+
+## Data Splitting
+
+``` r
+library(caret)
+```
+
+    ## Loading required package: lattice
+
+``` r
+# Set seed for reproducibility
+set.seed(123)
+
+# Create an index for splitting the dataset (70% for training, 30% for testing)
+split_index <- createDataPartition(HousingData$MEDV, p = 0.7, list = FALSE)
+
+# Split the dataset into training and testing sets
+train_data <- HousingData[split_index, ]
+test_data <- HousingData[-split_index, ]
+
+# Display the dimensions of the training and testing sets
+cat("Training set dimensions:", dim(train_data), "\n")
+```
+
+    ## Training set dimensions: 356 14
+
+``` r
+cat("Testing set dimensions:", dim(test_data), "\n")
+```
+
+    ## Testing set dimensions: 150 14
